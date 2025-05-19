@@ -8,10 +8,10 @@ const Navbar = () => {
 
   useEffect(() => {
     if (darkMode) {
-      document.body.classList.add("dark-theme");
+      document.body.classList.add("dark-mode");
       localStorage.setItem("theme", "dark");
     } else {
-      document.body.classList.remove("dark-theme");
+      document.body.classList.remove("dark-mode");
       localStorage.setItem("theme", "light");
     }
   }, [darkMode]);

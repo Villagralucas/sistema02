@@ -1,5 +1,6 @@
-// src/components/StepperVertical.jsx
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./StepperVertical.css";
 
 const steps = [
@@ -30,12 +31,15 @@ const StepperVertical = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState(initialData);
   const [showTicket, setShowTicket] = useState(false);
+  const [errores, setErrores] = useState({}); // Nuevo estado para errores
 
+  // Actualiza datos y limpia errores al editar
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
+    setErrores((prev) => ({ ...prev, [e.target.name]: false }));
   };
 
   const handleHoraClick = (hora, disponible) => {
@@ -44,21 +48,57 @@ const StepperVertical = () => {
         ...prev,
         hora: hora,
       }));
+      setErrores((prev) => ({ ...prev, hora: false }));
     }
   };
 
+  // VALIDACIÓN
+  const validarPaso = (idx) => {
+    let nuevosErrores = {};
+    if (idx === 0) {
+      if (!formData.nombre) nuevosErrores.nombre = true;
+      if (!formData.email) nuevosErrores.email = true;
+      if (!formData.celular) nuevosErrores.celular = true;
+    }
+    if (idx === 1) {
+      if (!formData.servicio) nuevosErrores.servicio = true;
+      if (!formData.fecha) nuevosErrores.fecha = true;
+      if (!formData.hora) nuevosErrores.hora = true;
+    }
+    setErrores(nuevosErrores);
+    return Object.keys(nuevosErrores).length === 0;
+  };
+
+  // Avanzar paso con validación
+  const handleNext = () => {
+    if (!validarPaso(activeStep)) {
+      toast.error("Por favor, completá todos los campos obligatorios.");
+      return;
+    }
+    setActiveStep((prev) => prev + 1);
+  };
+
+  // Confirmar con validación final
   const handleConfirmar = () => {
+    if (!validarPaso(1)) {
+      setActiveStep(1);
+      toast.error("Faltan completar campos en el paso anterior.");
+      return;
+    }
     setShowTicket(true);
+    toast.success("¡Turno reservado con éxito!");
   };
 
   const handleNuevoTurno = () => {
     setShowTicket(false);
     setActiveStep(0);
     setFormData(initialData);
+    setErrores({});
   };
 
   return (
     <div className="stepper-vertical-container">
+      <ToastContainer position="top-right" autoClose={2000} />
       <div className="stepper-vertical">
         {steps.map((step, idx) => (
           <div
@@ -85,6 +125,9 @@ const StepperVertical = () => {
                       placeholder="Nombre"
                       value={formData.nombre}
                       onChange={handleChange}
+                      style={{
+                        border: errores.nombre ? "2px solid red" : undefined,
+                      }}
                     />
                     <input
                       name="email"
@@ -92,6 +135,9 @@ const StepperVertical = () => {
                       placeholder="Email"
                       value={formData.email}
                       onChange={handleChange}
+                      style={{
+                        border: errores.email ? "2px solid red" : undefined,
+                      }}
                     />
                     <input
                       name="celular"
@@ -99,6 +145,9 @@ const StepperVertical = () => {
                       placeholder="Celular"
                       value={formData.celular}
                       onChange={handleChange}
+                      style={{
+                        border: errores.celular ? "2px solid red" : undefined,
+                      }}
                     />
                   </div>
                 )}
@@ -110,6 +159,9 @@ const StepperVertical = () => {
                         name="servicio"
                         value={formData.servicio}
                         onChange={handleChange}
+                        style={{
+                          border: errores.servicio ? "2px solid red" : undefined,
+                        }}
                       >
                         <option value="">Elegí tu servicio</option>
                         <option value="Corte">Corte</option>
@@ -120,6 +172,9 @@ const StepperVertical = () => {
                         type="date"
                         value={formData.fecha}
                         onChange={handleChange}
+                        style={{
+                          border: errores.fecha ? "2px solid red" : undefined,
+                        }}
                       />
                     </div>
                     <div className="horarios-grid">
@@ -128,6 +183,9 @@ const StepperVertical = () => {
                           key={i}
                           className={`horario-card ${!h.disponible ? "ocupado" : ""} ${formData.hora === h.hora ? "selected" : ""}`}
                           onClick={() => handleHoraClick(h.hora, h.disponible)}
+                          style={{
+                            border: errores.hora && !formData.hora && i === 0 ? "2px solid red" : undefined,
+                          }}
                         >
                           {h.hora}
                           {!h.disponible && <span className="ocupado-text">Ocupado</span>}
@@ -168,13 +226,7 @@ const StepperVertical = () => {
                   </button>
                   {idx < steps.length - 1 && (
                     <button
-                      onClick={() => setActiveStep((prev) => prev + 1)}
-                      disabled={
-                        (idx === 0 &&
-                          (!formData.nombre || !formData.email || !formData.celular)) ||
-                        (idx === 1 &&
-                          (!formData.servicio || !formData.fecha || !formData.hora))
-                      }
+                      onClick={handleNext}
                     >
                       Siguiente
                     </button>
@@ -183,14 +235,6 @@ const StepperVertical = () => {
                     <button
                       className="confirmar"
                       onClick={handleConfirmar}
-                      disabled={
-                        !formData.nombre ||
-                        !formData.email ||
-                        !formData.celular ||
-                        !formData.servicio ||
-                        !formData.fecha ||
-                        !formData.hora
-                      }
                     >
                       Confirmar
                     </button>
@@ -201,7 +245,6 @@ const StepperVertical = () => {
           </div>
         ))}
       </div>
-
       {/* TICKET FINAL */}
       {showTicket && (
         <div className="ticket-card">
