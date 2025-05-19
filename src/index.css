@@ -1,0 +1,31 @@
+body {
+  background: #f3f3f3;
+  color: #181818;
+  transition: background 0.3s, color 0.3s;
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  
+}
+
+body.dark-theme {
+  background: #121212;
+  color: #f3f3f3;
+}
+
+body.dark-theme .navbar {
+  background: #1c1c1c;
+  color: #fff;
+}
+
+body.dark-theme .navbar-links li a {
+  color: #fff;
+}
+
+body.dark-theme .navbar-links li a:hover {
+  color: #00e0ff;
+}
+
+
+

@@ -1,0 +1,126 @@
+/* --------- NAVBAR GENERAL --------- */
+.navbar {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  margin: 0;
+  background: #fff;         /* Fondo claro por defecto */
+  color: #181818;           /* Texto oscuro por defecto */
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  box-sizing: border-box;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* LOGO */
+.navbar-logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #181818;         /* Texto oscuro */
+  transition: color 0.3s;
+}
+
+/* LINKS */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: #181818;       /* Links oscuros */
+  font-size: 1.1rem;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.navbar-links li a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background: #17e5ec;
+  transition: width 0.3s cubic-bezier(.77,0,.18,1);
+}
+
+.navbar-links li a:hover {
+  color: #d12ff1;
+}
+
+.navbar-links li a:hover::after {
+  width: 100%;
+}
+
+/* Botón de tema */
+.theme-toggle {
+  background: none;
+  border: none;
+  color: #181818;
+  font-size: 1.6rem;
+  cursor: pointer;
+  margin-left: 2rem;
+  transition: color 0.3s;
+}
+.theme-toggle:hover {
+  color: #f5f3f3;
+}
+
+/* --------- NAVBAR MODO OSCURO --------- */
+body.dark-theme .navbar {
+  background: #181818;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+body.dark-theme .navbar-logo {
+  color: #fff;
+}
+
+body.dark-theme .navbar-links li a {
+  color: #fff;
+}
+
+body.dark-theme .theme-toggle {
+  color: #fff;
+}
+
+/* Hover sigue igual para ambos temas */
+body.dark-theme .navbar-links li a:hover {
+  color: #f35af8;
+}
+
+/* --------- RESPONSIVE --------- */
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .navbar-logo {
+    margin-bottom: 1rem;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .navbar-links li a {
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+  }
+}
