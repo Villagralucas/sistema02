@@ -2,7 +2,7 @@
   --color-bg: #f8f8f8;
   --color-card: #fff;
   --color-card-border: #ccc;
-  --color-active: #3461ff;
+    --color-active: #188358;
   --color-done: #26c485;
   --color-text: #222;
   --color-error: #ff4d4f;
@@ -12,7 +12,7 @@ body.dark-mode {
   --color-bg: #151515;
   --color-card: #222;
   --color-card-border: #444;
-  --color-active: #6b8afd;
+    --color-active: #188358;
   --color-done: #26c485;
   --color-text: #fff;
   --color-error: #ff7a7a;
@@ -38,8 +38,11 @@ body.dark-mode {
   border: 1.5px solid var(--color-card-border);
   margin-bottom: 24px;
   padding: 28px 24px;
+  
   transition: background 0.3s, color 0.3s, border 0.3s;
   position: relative;
+  font-family: 'Bebas Neue', cursive;
+
 }
 
 .step-vertical-card.active {
@@ -205,6 +208,8 @@ input[style*="2px solid red"], select[style*="2px solid red"] {
   border: 1.5px solid var(--color-card-border);
   text-align: center;
   animation: ticketShow 0.4s;
+  font-family: 'Quicksand', Arial, sans-serif;
+
 }
 @keyframes ticketShow {
   from { opacity: 0; transform: scale(0.95);}
@@ -215,11 +220,15 @@ input[style*="2px solid red"], select[style*="2px solid red"] {
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 16px;
+  font-family: 'Quicksand', Arial, sans-serif;
+
 }
 
 .ticket-info {
   text-align: left;
   margin-bottom: 18px;
+  font-family: 'Quicksand', Arial, sans-serif;
+
 }
 .nuevo-turno {
   margin-top: 6px;
@@ -232,6 +241,8 @@ input[style*="2px solid red"], select[style*="2px solid red"] {
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.2s;
+  font-family: 'Quicksand', Arial, sans-serif;
+
 }
 
 @media (max-width: 700px) {
@@ -245,4 +256,6 @@ input[style*="2px solid red"], select[style*="2px solid red"] {
 }
 body {
   background-color: #151515;
+
+
 }

@@ -18,8 +18,8 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-logo">H4RR1NT0N</div>
-      <ul className="navbar-links">
+    <div className="navbar-logo bebas">H4RR1NT0N</div>
+      <ul className="navbar-links bebas">
         <li><a href="#">Inicio</a></li>
         <li><a href="#">Servicios</a></li>
         <li><a href="#">Turnos</a></li>

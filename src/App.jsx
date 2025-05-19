@@ -8,7 +8,6 @@ function App() {
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      minHeight: '100vh'
     }}>
       <Navbar />
 
@@ -16,9 +15,9 @@ function App() {
       <main style={{
         flex: 1,
         width: '100%',
-        maxWidth: 600,
+        maxWidth: 500,
         margin: '0 auto',
-        padding: '32px 0'
+        padding: "8px 0 8px 0", // menos padding arriba/abajo
       }}>
         <StepperVertical />
       </main>

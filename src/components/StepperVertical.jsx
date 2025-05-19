@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { validarPaso } from "../utils/validacionesTurno";
+import { formatearCelular } from "../utils/formatearCelular";
 import "./StepperVertical.css";
 
 const steps = [
@@ -31,15 +32,24 @@ const StepperVertical = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState(initialData);
   const [showTicket, setShowTicket] = useState(false);
-  const [errores, setErrores] = useState({}); // Nuevo estado para errores
+  const [errores, setErrores] = useState({});
 
   // Actualiza datos y limpia errores al editar
   const handleChange = (e) => {
+    let { name, value } = e.target;
+    if (name === "nombre") {
+      // Elimina números y símbolos, deja solo letras, tildes y espacios. Máximo 16.
+      value = value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, "").slice(0, 16);
+    }
+    if (name === "celular") {
+      // Sólo números, máximo 11 dígitos, con formateo argentino
+      value = formatearCelular(value);
+    }
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
-    setErrores((prev) => ({ ...prev, [e.target.name]: false }));
+    setErrores((prev) => ({ ...prev, [name]: false }));
   };
 
   const handleHoraClick = (hora, disponible) => {
@@ -52,35 +62,22 @@ const StepperVertical = () => {
     }
   };
 
-  // VALIDACIÓN
-  const validarPaso = (idx) => {
-    let nuevosErrores = {};
-    if (idx === 0) {
-      if (!formData.nombre) nuevosErrores.nombre = true;
-      if (!formData.email) nuevosErrores.email = true;
-      if (!formData.celular) nuevosErrores.celular = true;
-    }
-    if (idx === 1) {
-      if (!formData.servicio) nuevosErrores.servicio = true;
-      if (!formData.fecha) nuevosErrores.fecha = true;
-      if (!formData.hora) nuevosErrores.hora = true;
-    }
-    setErrores(nuevosErrores);
-    return Object.keys(nuevosErrores).length === 0;
-  };
-
-  // Avanzar paso con validación
+  // Avanzar paso con validación EXTERNA
   const handleNext = () => {
-    if (!validarPaso(activeStep)) {
-      toast.error("Por favor, completá todos los campos obligatorios.");
+    const nuevosErrores = validarPaso(formData, activeStep);
+    setErrores(nuevosErrores);
+    if (Object.keys(nuevosErrores).length !== 0) {
+      toast.error("Por favor, completá todos los campos correctamente.");
       return;
     }
     setActiveStep((prev) => prev + 1);
   };
 
-  // Confirmar con validación final
+  // Confirmar con validación EXTERNA
   const handleConfirmar = () => {
-    if (!validarPaso(1)) {
+    const nuevosErrores = validarPaso(formData, 1);
+    setErrores(nuevosErrores);
+    if (Object.keys(nuevosErrores).length !== 0) {
       setActiveStep(1);
       toast.error("Faltan completar campos en el paso anterior.");
       return;
@@ -125,10 +122,15 @@ const StepperVertical = () => {
                       placeholder="Nombre"
                       value={formData.nombre}
                       onChange={handleChange}
+                      maxLength={16}
                       style={{
                         border: errores.nombre ? "2px solid red" : undefined,
                       }}
                     />
+                    {errores.nombre && (
+                      <div style={{ color: "red", fontSize: "0.95rem" }}>{errores.nombre}</div>
+                    )}
+
                     <input
                       name="email"
                       type="email"
@@ -139,16 +141,26 @@ const StepperVertical = () => {
                         border: errores.email ? "2px solid red" : undefined,
                       }}
                     />
+                    {errores.email && (
+                      <div style={{ color: "red", fontSize: "0.95rem" }}>{errores.email}</div>
+                    )}
+
                     <input
                       name="celular"
                       type="tel"
                       placeholder="Celular"
                       value={formData.celular}
                       onChange={handleChange}
+                      maxLength={13} // incluye guiones
                       style={{
                         border: errores.celular ? "2px solid red" : undefined,
                       }}
+                      autoComplete="off"
+                      inputMode="numeric"
                     />
+                    {errores.celular && (
+                      <div style={{ color: "red", fontSize: "0.95rem" }}>{errores.celular}</div>
+                    )}
                   </div>
                 )}
                 {/* Paso 2 */}
@@ -167,6 +179,10 @@ const StepperVertical = () => {
                         <option value="Corte">Corte</option>
                         <option value="Afeitado">Afeitado</option>
                       </select>
+                      {errores.servicio && (
+                        <div style={{ color: "red", fontSize: "0.95rem" }}>{errores.servicio}</div>
+                      )}
+
                       <input
                         name="fecha"
                         type="date"
@@ -176,6 +192,9 @@ const StepperVertical = () => {
                           border: errores.fecha ? "2px solid red" : undefined,
                         }}
                       />
+                      {errores.fecha && (
+                        <div style={{ color: "red", fontSize: "0.95rem" }}>{errores.fecha}</div>
+                      )}
                     </div>
                     <div className="horarios-grid">
                       {horariosDisponibles.map((h, i) => (
@@ -192,6 +211,9 @@ const StepperVertical = () => {
                         </div>
                       ))}
                     </div>
+                    {errores.hora && (
+                      <div style={{ color: "red", fontSize: "0.95rem" }}>{errores.hora}</div>
+                    )}
                   </>
                 )}
                 {/* Paso 3 */}

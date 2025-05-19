@@ -2,15 +2,18 @@
   --color-bg: #f8f8f8;
   --color-navbar: #fff;
   --color-navbar-text: #222;
-  --color-footer: #333;
   --color-footer-text: #fff;
   --color-card: #fff;
   --color-card-border: #ccc;
-  --color-active: #3461ff;
+    --color-active: #188358 !important;
   --color-done: #26c485;
   --color-text: #222;
   --color-error: #ff4d4f;
+  --color-footer: #fff;
+  --color-footer-text: #111;
+   --radius-card: 20px;
 }
+
 
 body.dark-mode {
   --color-bg: #151515;
@@ -20,17 +23,26 @@ body.dark-mode {
   --color-footer-text: #eee;
   --color-card: #222;
   --color-card-border: #444;
-  --color-active: #6b8afd;
+    --color-active: #188358; /* VERDE para modo claro */
   --color-done: #26c485;
   --color-text: #fff;
   --color-error: #ff7a7a;
+  --color-footer: #111;
+  --color-footer-text: #eee;
+   --radius-card: 28px;
+ 
 }
 
 body {
   background: var(--color-bg) !important;
   color: var(--color-text);
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Bebas Neue', cursive;
   transition: background 0.3s, color 0.3s;
   min-height: 100vh;
   margin: 0;
+  
+}
+.step-vertical-card.active {
+  border-color: var(--color-active);
+  /*box-shadow: 0 6px 22px rgba(52,97,255,0.08); /* podés ajustar el color de la sombra también */
 }

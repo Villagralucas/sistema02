@@ -1,20 +1,20 @@
 import React from "react";
+
 const Footer = () => (
   <footer
     style={{
-      background: "var(--color-footer)",
-      color: "var(--color-footer-text)",
-      padding: "20px 0",
-      textAlign: "center",
-      position: "relative",
-      left: 0,
-      width: "100%",
-      boxShadow: "0 -2px 10px rgba(0,0,0,0.15)",
-      transition: "background 0.3s, color 0.3s"
+    background: "var(--color-footer)",
+    color: "var(--color-footer-text)",
+    padding: "10px 0",
+    fontSize: "0.95rem",
+    textAlign: "center",
+    width: "100%",
+    boxShadow: "0 -2px 10px rgba(0,0,0,0.15)",
+    transition: "background 0.3s, color 0.3s"
     }}
   >
     <div>
-      &copy; {new Date().getFullYear()} Sistema de Turnos | Hecho con ❤️ por Bro
+      &copy; {new Date().getFullYear()} Sistema de Turnos | BRO
     </div>
     <div style={{ marginTop: 8 }}>
       <a
@@ -56,4 +56,5 @@ const Footer = () => (
     </div>
   </footer>
 );
+
 export default Footer;
