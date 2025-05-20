@@ -1,0 +1,99 @@
+.home-container {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 8px 0 8px;
+}
+
+.home-header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.home-title {
+  font-family: 'Bebas Neue', 'Quicksand', Arial, sans-serif;
+  font-size: 3.1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #fff;
+  margin: 18px 0 12px 0;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.09);
+}
+.home-title-green {
+  color: var(--color-active); /* tu verde/azul principal */
+}
+
+
+/* Botones en fila */
+.home-btns-row {
+  display: flex;
+  flex-direction: row;
+  gap: 34px;
+  justify-content: center;
+  width: 100%;
+  max-width: 940px;
+  margin-top: 200px;
+}
+
+/* Botón transparente y grande */
+.home-btn-transparent {
+  background: transparent;
+  border: 2.5px solid var(--color-active);
+  color: var(--color-text); /* negro en light, blanco en dark */
+  font-family: 'Bebas Neue', 'Quicksand', Arial, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  border-radius: 36px;
+  min-width: 220px;
+  min-height: 120px;
+  padding: 28px 32px;
+  cursor: pointer;
+  outline: none;
+  letter-spacing: 1.2px;
+  box-shadow: 0 4px 20px rgba(20,20,40,0.10);
+  transition: 
+    background 0.18s,
+    color 0.18s,
+    border 0.18s,
+    transform 0.13s,
+    box-shadow 0.15s;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+/* HOVER para todos los temas */
+.home-btn-transparent:hover {
+  background: var(--color-active);
+  color: #fff;
+  border-color: var(--color-active);
+  transform: scale(1.04);
+  box-shadow: 0 8px 40px rgba(52,97,255,0.13);
+}
+
+/* Modo oscuro: letras blancas por default, hover igual */
+body.dark-mode .home-btn-transparent {
+  color: #fff;
+  border-color: var(--color-active);
+  background: transparent;
+}
+body.dark-mode .home-btn-transparent:hover {
+  background: #fff;
+  color: var(--color-active);
+  border-color: #fff;
+}
+
+/* Responsive para mobile: apila los botones */
+@media (max-width: 900px) {
+  .home-btns-row {
+    flex-direction: column;
+    gap: 28px;
+    max-width: 100%;
+    align-items: center;
+  }
+  .home-btn-transparent {
+    min-width: 90vw;
+    font-size: 2rem;
+  }
+}

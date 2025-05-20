@@ -23,6 +23,7 @@ body.dark-mode {
   padding: 32px 0;
   min-height: 80vh;
   transition: background 0.3s;
+  font-family: 'Bebas Neue', cursive;
 }
 
 .stepper-vertical {
@@ -38,7 +39,6 @@ body.dark-mode {
   border: 1.5px solid var(--color-card-border);
   margin-bottom: 24px;
   padding: 28px 24px;
-  
   transition: background 0.3s, color 0.3s, border 0.3s;
   position: relative;
   font-family: 'Bebas Neue', cursive;
@@ -74,6 +74,7 @@ body.dark-mode {
   justify-content: center;
   margin-right: 14px;
   transition: background 0.3s;
+  font-family: 'Bebas Neue', cursive;
 }
 
 .circle-vertical.active {
@@ -112,7 +113,7 @@ input, select {
   background: var(--color-card);
   color: var(--color-text);
   transition: border 0.2s, background 0.2s;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+ font-family: 'Bebas Neue', cursive;
 }
 
 input:focus, select:focus {
@@ -131,6 +132,7 @@ input[style*="2px solid red"], select[style*="2px solid red"] {
   gap: 12px;
   margin-top: 10px;
   flex-wrap: wrap;
+  font-family: 'Bebas Neue', cursive;
 }
 
 .horario-card {
@@ -146,12 +148,14 @@ input[style*="2px solid red"], select[style*="2px solid red"] {
   margin-bottom: 6px;
   transition: background 0.2s, border 0.2s, color 0.2s;
   position: relative;
+  font-family: 'Bebas Neue', cursive;
 }
 
 .horario-card.selected {
   border: 2px solid var(--color-active);
   background: var(--color-active);
   color: #fff;
+  font-family: 'Bebas Neue', cursive;
 }
 
 .horario-card.ocupado {
@@ -166,6 +170,7 @@ input[style*="2px solid red"], select[style*="2px solid red"] {
   color: var(--color-error);
   display: block;
   margin-top: 2px;
+   font-family: 'Bebas Neue', cursive;
   
 }
 
@@ -186,15 +191,18 @@ input[style*="2px solid red"], select[style*="2px solid red"] {
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
+   font-family: 'Bebas Neue', cursive;
 }
 .stepper-buttons-vertical button[disabled] {
   background: #ccc;
   color: #555;
   cursor: not-allowed;
+   font-family: 'Bebas Neue', cursive;
 }
 
 .confirmar {
   background: var(--color-done);
+  font-family: 'Bebas Neue', cursive;
 }
 
 .ticket-card {
@@ -208,7 +216,7 @@ input[style*="2px solid red"], select[style*="2px solid red"] {
   border: 1.5px solid var(--color-card-border);
   text-align: center;
   animation: ticketShow 0.4s;
-  font-family: 'Quicksand', Arial, sans-serif;
+  font-family: 'Bebas Neue', cursive;
 
 }
 @keyframes ticketShow {
@@ -220,14 +228,14 @@ input[style*="2px solid red"], select[style*="2px solid red"] {
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 16px;
-  font-family: 'Quicksand', Arial, sans-serif;
+  font-family: 'Bebas Neue', cursive;
 
 }
 
 .ticket-info {
   text-align: left;
   margin-bottom: 18px;
-  font-family: 'Quicksand', Arial, sans-serif;
+ font-family: 'Bebas Neue', cursive;
 
 }
 .nuevo-turno {
@@ -241,7 +249,7 @@ input[style*="2px solid red"], select[style*="2px solid red"] {
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.2s;
-  font-family: 'Quicksand', Arial, sans-serif;
+  font-family: 'Bebas Neue', cursive;
 
 }
 
