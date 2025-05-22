@@ -46,3 +46,10 @@ body {
   border-color: var(--color-active);
   /*box-shadow: 0 6px 22px rgba(52,97,255,0.08); /* podés ajustar el color de la sombra también */
 }
+
+.contacto-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 36px rgba(24,131,88,0.12);
+  border-color: var(--color-done);
+  color: var(--color-active);
+}

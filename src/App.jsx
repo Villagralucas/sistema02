@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import StepperVertical from "./components/StepperVertical";
 import Footer from "./components/Footer";
+import Servicios from "./components/Servicios";
+import Contacto from "./components/Contacto"; // Ojo acá, el archivo debe ser Contacto.jsx
 
 function App() {
   return (
@@ -20,12 +22,11 @@ function App() {
           {/* Pantalla de inicio (Home) */}
           <Route path="/" element={<Home />} />
 
-          {/* Pantalla de turnos, igual que tu layout original */}
+          {/* Pantalla de turnos */}
           <Route
             path="/turnos"
             element={
               <>
-              
                 <main
                   style={{
                     flex: 1,
@@ -53,6 +54,12 @@ function App() {
               </>
             }
           />
+
+          {/* Pantalla de servicios */}
+          <Route path="/servicios" element={<Servicios />} />
+
+          {/* Pantalla de contacto */}
+          <Route path="/contacto" element={<Contacto />} />
         </Routes>
 
         <Footer />

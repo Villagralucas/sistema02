@@ -24,18 +24,7 @@ const Home = () => {
         >
           BARBERÍA
         </button>
-        <button
-          className="home-btn-transparent"
-          onClick={() => handleClick("tattoo")}
-        >
-          TATTOO
-        </button>
-        <button
-          className="home-btn-transparent"
-          onClick={() => handleClick("piercing")}
-        >
-          PIERCING
-        </button>
+      
       </div>
     </div>
   );
