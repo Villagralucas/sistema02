@@ -25,6 +25,13 @@
   color: var(--color-active); /* tu verde/azul principal */
 }
 
+.home-title:hover {
+  animation-name: tada;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  cursor: pointer; /* Si querés que cambie el cursor al pasar el mouse */
+}
+
 
 /* Botones en fila */
 .home-btns-row {
@@ -70,6 +77,9 @@
   border-color: var(--color-active);
   transform: scale(1.04);
   box-shadow: 0 8px 40px rgba(52,97,255,0.13);
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
 
 /* Modo oscuro: letras blancas por default, hover igual */
